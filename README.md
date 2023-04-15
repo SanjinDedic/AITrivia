@@ -1,46 +1,43 @@
-# WebQuiz
-This repository contains the source code for a simple quiz website built with HTML, CSS, and JavaScript. The quiz features multiple-choice and short-answer questions, as well as a team-based leaderboard.
+# Science and Tech Trivia
 
+This is a web-based Science and Tech Trivia Quiz game built using HTML, CSS, and JavaScript. Users can compete with each other by answering multiple-choice or short-answer questions related to science and technology. The ranking table displays the real-time ranking of teams based on their scores.
 
-## Features
+## Project Structure
 
-- Responsive design for a seamless experience on desktop and mobile devices.
-- Multiple-choice and short-answer question formats.
-- Team-based leaderboard with team name input.
-- Dynamic score display and question navigation.
-- Fetches quiz questions from a JSON file.
-- Integration with an external API to validate answers and update scores.
+```
+├── css
+│   ├── main.css
+│   └── rankings.css
+├── js
+│   ├── main.js
+│   └── rankings.js
+├── pages
+│   ├── about.html
+│   └── rankings.html
+├── index.html
+└── README.md
+```
+### <b>index.html</b>
+The main HTML file for the Science and Tech Trivia game. It includes the login form, navigation bar, and quiz container. The quiz container contains questions, answer options, and a countdown timer. The file also links to the necessary CSS and JavaScript files.
 
+### <b>pages/rankings.html</b>
+This HTML file displays the ranking table, showing the real-time scores and rankings of all participating teams. It includes the navigation bar and links to the necessary CSS and JavaScript files.
 
-## Getting Started
+### <b>css/main.css</b>
+This file contains the primary CSS styles for the <b>index.html</b> page.
 
-First visit the current website to see it in action: [https://sanjin84.github.io/WebQuiz] :+1:
+### <b>css/rankings.css</b>
+This file contains the CSS styles specifically for the <b>rankings.html</b> page.
 
-Use credentials:
+### <b>js/main.js</b>
+The main JavaScript file containing the core functionality of the game, including fetching questions, displaying questions, submitting answers, and managing the countdown timer. It also includes the login function for user authentication.
 
-```Username: GitTest```
+### <b>js/rankings.js</b>
+This JavaScript file is responsible for fetching the team rankings from the server and updating the ranking table on the <b>rankings.html</b> page.
 
-```Password: git```
+## Usage
 
-Then clone this repository and open the `index.html` file in your preferred web browser.
-
-```git clone https://github.com/Sanjin84/WebQuizAPI```
-
-```cd WebQuizAPI```
-
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute, please follow these steps:
-
-1. Fork this repository.
-2. Create a new branch with a descriptive name, e.g., `git checkout -b new-feature`.
-3. Commit your changes to the new branch, e.g., `git commit -m "Add new feature"`.
-4. Push your changes to your fork, e.g., `git push origin new-feature`.
-5. Create a pull request from your fork to the original repository.
-
-Please ensure that your code follows best practices and adheres to the existing coding style.
+To play the game, open the <b>index.html</b> file in a web browser. Enter your team name and click the "Login" button. Once logged in, you will be presented with a series of questions. Answer the questions within the given time limit. At the end of the quiz, you will be redirected to the <b>rankings.html</b> page, where you can view your team's ranking.
 
 ## License
-
-This project is licensed under the MIT License. For more information, please refer to the [LICENSE](LICENSE) file.
+This project is licensed under the MIT License.
