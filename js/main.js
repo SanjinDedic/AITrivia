@@ -101,7 +101,11 @@ async function submitAnswer() {
   }
   currentQuestionIndex++;
   displayQuestion();
+
+  // Add the startCountdown() function call here
+  startCountdown();
 }
+
 
 function showResult() {
   document.querySelector('.question-container').classList.add('hidden');
