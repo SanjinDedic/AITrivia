@@ -22,7 +22,7 @@ function fetchQuestions() {
   return fetch('questions.json')
     .then((response) => response.json())
     .then((data) => {
-      const last50Questions = data.slice(-50);
+      const last50Questions = data.slice(-60);
       questions = shuffleArray(last50Questions).slice(0, 10);
       maxScore = questions.reduce((total, question) => total + question.points, 0);
       displayQuestion();

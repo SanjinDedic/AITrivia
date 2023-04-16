@@ -1412,7 +1412,7 @@
         "type": "multiple_choice",
         "question": "What is the name of the programming language designed as a joke, where the code looks like a Shakespearean play?",
         "options": [
-            "Brainfuck",
+            "Brainf#$k",
             "Piet",
             "Shakespeare",
             "Whitespace"
@@ -1500,7 +1500,7 @@
         "type": "multiple_choice",
         "question": "Which of these programming languages was designed as a joke, using only eight commands?",
         "options": [
-            "Brainfuck",
+            "Brainf$%k",
             "Piet",
             "Shakespeare",
             "Whitespace"
