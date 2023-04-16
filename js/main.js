@@ -115,7 +115,7 @@ function showResult() {
   setTimeout(() => {
     let baseurl;
     if (window.location.hostname === "sanjin84.github.io") {
-      baseurl = "/WebQuiz";
+      baseurl = "/AITrivia";
     } else {
       baseurl = "";
     }
