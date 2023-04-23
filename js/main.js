@@ -182,7 +182,12 @@ fetchQuestions();
 
 
 function startCountdown() {
-  let timeLeft = 10;
+  let timeLeft;
+  if (questions[currentQuestionIndex].type === 'multiple_choice') {
+    timeLeft = 15;
+  } else if (questions[currentQuestionIndex].type === 'short_answer') {
+    timeLeft = 30;
+  }
   document.getElementById("countdown-display").innerText = `Time left: ${timeLeft}`;
 
   countdownTimer = setInterval(() => {
@@ -197,13 +202,49 @@ function startCountdown() {
 }
 
 async function submitFailingAnswer() {
+  const teamName = document.getElementById('team_name').value;
+  const id = questions[currentQuestionIndex].id.toString(10);
+  let answer;
+
   if (questions[currentQuestionIndex].type === 'multiple_choice') {
-    document.querySelector('input[name="option"][value="x"]').checked = true;
+    answer = 'x';
   } else if (questions[currentQuestionIndex].type === 'short_answer') {
-    document.getElementById("short_answer").value = 'x';
+    answer = document.getElementById("short_answer").value.trim();
   }
-  await submitAnswer();
+
+  const response = await fetch('https://vccfinal.online/submit_answer', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem("access_token"),
+    },
+    body: JSON.stringify({ "id": id, "answer": answer, "team_name": teamName, "table": "grokkers" }),
+  });
+
+  const responseData = await response.json();
+  console.log("Response data:", responseData);
+
+  if (responseData.message && responseData.message.includes("Correct")) {
+    console.log("Answer is correct");
+    score += questions[currentQuestionIndex].points;
+    updateScoreDisplay();
+  } else {
+    console.log("Answer is incorrect");
+  }
+  currentQuestionIndex++;
+  displayQuestion();
+  startCountdown();
 }
+
+
+
+
+
+
+
+
+
+
 
 function startQuiz() {
   displayQuestion();
