@@ -139,7 +139,6 @@ function showQuizContainer() {
 }
 
 
-
 // Login function to authenticate the user
 async function login() {
   const teamName = document.getElementById("team_name").value;
