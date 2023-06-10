@@ -41,3 +41,5 @@ To play the game, open the <b>index.html</b> file in a web browser. Enter your t
 
 ## License
 This project is licensed under the MIT License.
+
+Also enjoy :)
