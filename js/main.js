@@ -82,7 +82,7 @@ async function submitAnswer() {
         answer = document.getElementById("short_answer").value.trim();
     }
 
-    const response = await fetch('https://vccfinal.online/submit_answer', {
+    const response = await fetch('https://aitrivia.online/submit_answer', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -148,9 +148,10 @@ function showQuizContainer() {
 
 // Login function to authenticate the user
 async function login() {
+    console.log("Login initiated");
     const teamName = document.getElementById("team_name").value;
-
-    const response = await fetch("https://vccfinal.online/quick_signup", {
+    console.log("team fetched");
+    const response = await fetch("https://aitrivia.online/quick_signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -161,7 +162,8 @@ async function login() {
     });
 
     const responseData = await response.json();
-
+    console.log("Response arrived");
+    console.log(responseData);
     const duplicateNameError = document.getElementById("duplicate-name-error");
 
     if (response.status === 401) {
@@ -220,7 +222,7 @@ async function submitFailingAnswer() {
         answer = document.getElementById("short_answer").value.trim();
     }
 
-    const response = await fetch('https://vccfinal.online/submit_answer', {
+    const response = await fetch('https://aitrivia.online/submit_answer', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
