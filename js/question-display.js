@@ -1,4 +1,4 @@
-import { submitAnswer, showResult  } from './quiz-controller.js';
+import { submitAnswer, showResult  } from '/js/quiz-controller.js';
 
 let countdownTimer;
 

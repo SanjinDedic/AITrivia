@@ -1,5 +1,5 @@
-import { fetchQuestions, shuffleArray } from './startup.js';
-import { displayQuestion, startCountdown } from './question-display.js';
+import { fetchQuestions, shuffleArray } from '/js/startup.js';
+import { displayQuestion, startCountdown } from '/js/question-display.js';
 //import { updateScoreDisplay, showResult } from './score-handler.js';
 
 let questions = [];
