@@ -69,4 +69,4 @@ function updateCurrentTeamName() {
 setInterval(() => {
   fetchDataAndUpdateTable();
   updateCurrentTeamName();
-}, 1000);
+}, 5000);
