@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base id="base" href="/">
   <script>
-    const setBaseURL = () => {
-      let baseurl;
-      if (window.location.hostname === "sanjin84.github.io") {
-        baseurl = "/AITrivia";
-      } else {
-        baseurl = "";
-      }
-      const base = document.createElement("base");
-      base.href = baseurl + "/";
-      document.head.appendChild(base);
-    };
-    setBaseURL();
+    document.getElementById('base').href = window.location.hostname === "sanjin84.github.io" ? "/AITrivia/" : "/";
   </script>    
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
