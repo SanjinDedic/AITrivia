@@ -1,11 +1,12 @@
-import { submitAnswer, showResult  } from '/js/quiz-controller.js';
+import { submitAnswer } from '/js/quiz-controller.js';
+import { showResult  } from '/js/score-handler.js';
 
 let countdownTimer;
 
-function displayQuestion(index, questions) {
+function displayQuestion(index, questions, score) {
     const question = questions[index];
     if (index >= questions.length) {
-        showResult();
+        showResult(questions, score);
         return;
     }
     const questionPoints = question.points;

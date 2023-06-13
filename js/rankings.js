@@ -64,7 +64,8 @@ function updateCurrentTeamName() {
     teamNameDisplay.textContent = "No team selected";
   }
 }
-
+fetchDataAndUpdateTable();
+updateCurrentTeamName();
 // Fetch data and update table every second
 setInterval(() => {
   fetchDataAndUpdateTable();
