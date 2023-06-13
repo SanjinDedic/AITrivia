@@ -1,7 +1,7 @@
 console.log('made it to quiz-controller.js');
 import { fetchQuestions, shuffleArray } from '/js/startup.js';
 import { displayQuestion, startCountdown } from '/js/question-display.js';
-//import { updateScoreDisplay, showResult } from './score-handler.js';
+import { updateScoreDisplay, showResult } from './score-handler.js';
 
 let questions = [];
 let currentQuestionIndex = 0;
@@ -12,8 +12,8 @@ const startQuiz = async () => {
     console.log('startQuiz');
     const { shuffledQuestions } = await fetchQuestions();
     questions = shuffledQuestions;
-    displayQuestion(currentQuestionIndex, questions); 
-    updateScoreDisplay();
+    displayQuestion(currentQuestionIndex, questions, score); 
+    updateScoreDisplay(score);
     startCountdown(currentQuestionIndex, questions);
 };
 
@@ -65,7 +65,7 @@ async function submitAnswer(forceSubmit = false) {
     if (responseData.message && responseData.message.includes("Correct")) {
         console.log("Answer is correct");
         score += questions[currentQuestionIndex].points;
-        updateScoreDisplay();
+        updateScoreDisplay(score);
         resultDisplay.classList.remove('hidden');
         resultMessage.innerText = 'Correct!';
         correctAnswer.innerText = '';
@@ -100,7 +100,7 @@ async function submitAnswer(forceSubmit = false) {
         resultDisplay.classList.add('hidden');
         questionContainer.classList.remove('hidden');
         currentQuestionIndex++;
-        displayQuestion(currentQuestionIndex,questions);
+        displayQuestion(currentQuestionIndex,questions, score);
         startCountdown(currentQuestionIndex,questions);
     }, 3000); // 3000ms (3 seconds) delay before showing next question
 }
@@ -112,28 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-function showResult() {
-    const maxScore = questions.reduce((total, question) => total + question.points, 0);
-    document.querySelector('.question-container').classList.add('hidden');
-    document.getElementById("result").innerText = `Your score: ${score}/${maxScore}`;
-    document.getElementById("result").classList.remove('hidden');
-    setTimeout(() => {
-        let baseurl;
-        if (window.location.hostname === "sanjin84.github.io") {
-            baseurl = "/AITrivia";
-        } else {
-            baseurl = "";
-        }
-        window.location.href = `${baseurl}/pages/rankings.html`;
-    }, 8000); // 5000ms (5 seconds) delay before redirecting
-}
-
-
-// Update the displayed score
-function updateScoreDisplay() {
-    document.getElementById("score-display").innerText = `Score: ${score}`;
-}
-
 startQuiz();
 
-export { submitAnswer, showResult, updateScoreDisplay };
+export { submitAnswer };

@@ -1,10 +1,10 @@
 let score = 0;
 
-function showResult() {
+function showResult(questions, score) {
+    const maxScore = questions.reduce((total, question) => total + question.points, 0);
     document.querySelector('.question-container').classList.add('hidden');
     document.getElementById("result").innerText = `Your score: ${score}/${maxScore}`;
     document.getElementById("result").classList.remove('hidden');
-
     setTimeout(() => {
         let baseurl;
         if (window.location.hostname === "sanjin84.github.io") {
@@ -18,7 +18,7 @@ function showResult() {
 
 
 // Update the displayed score
-function updateScoreDisplay() {
+function updateScoreDisplay(score) {
     document.getElementById("score-display").innerText = `Score: ${score}`;
 }
 

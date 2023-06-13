@@ -38,5 +38,11 @@
   <p>If you need technical assistance in hosting, please contact <a href="mailto:sanjin@headstartacademy.com.au">sanjin@headstartacademy.com.au</a>.</p>
 </div>
   </div>
+      <script type="text/javascript">
+    window.onload = function() {
+      const teamName = localStorage.getItem("teamName");
+      if (teamName) {document.getElementById("team-name-display").textContent = 'Team: ' +teamName;}
+    };
+  </script>
 </body>
 </html>

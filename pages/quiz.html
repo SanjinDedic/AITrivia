@@ -54,5 +54,11 @@
     </div>
   </div>
   <script type="module" src="js/quiz-controller.js"></script>
+  <script type="text/javascript">
+    window.onload = function() {
+      const teamName = localStorage.getItem("teamName");
+      if (teamName) {document.getElementById("team-name-display").textContent = 'Team: ' +teamName;}
+    };
+  </script>
 </body>
 </html>
