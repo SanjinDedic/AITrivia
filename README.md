@@ -1,7 +1,6 @@
 # Science and Tech Trivia
 
-This is a web-based Science and Tech Trivia Quiz game built using HTML, CSS, and JavaScript. Users can compete with each other by answering multiple-choice or short-answer questions related to science and technology. The ranking table displays the real-time ranking of teams based on their scores.
-### Live Site: https://aitrivia.live/
+This is a web-based Science and Tech Trivia Quiz game built using HTML, CSS, and JavaScript. Users can compete with each other by answering multiple-choice or short-answer questions related to science and technology. The ranking table displays the real-time ranking of teams based on their scores. **Live Site: https://aitrivia.live/**
 
 ## Project Structure
 
