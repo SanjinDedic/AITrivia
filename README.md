@@ -40,4 +40,4 @@ This JavaScript file is responsible for fetching the team rankings from the serv
 To play the game, open the <b>index.html</b> file in a web browser. Enter your team name and click the "Login" button. Once logged in, you will be presented with a series of questions. Answer the questions within the given time limit. At the end of the quiz, you will be redirected to the <b>rankings.html</b> page, where you can view your team's ranking.
 
 ## License
-This project is licensed under the MIT License.[MIT](https://choosealicense.com/licenses/mit/)
+This project is licensed under the [MIT Licence](https://choosealicense.com/licenses/mit/).
