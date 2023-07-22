@@ -89,14 +89,14 @@ body {
   font-size: 28px;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input[type="text"], .login-container input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   font-size: 18px;
 }
+
 
 button {
   background-color: #4CAF50;
