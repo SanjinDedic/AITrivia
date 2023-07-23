@@ -16,14 +16,19 @@
   </nav>
   <div class="main-container">
     <div class="container" id="login-container">
-      <h1>Enter Your Name:</h1>
-      <div>
-        <label for="team_name"></label>
-        <input type="text" id="team_name">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="margin-right: 10px;">Your Name:</h1>
+            <input type="text" id="team_name" style="width: 50%; padding: 6px 12px; margin: 4px 0; box-sizing: border-box; font-size: 18px;">
+          </div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin-right: 10px;">Game Version:</h1>
+        <select id="login_type" style="width: 50%; padding: 6px 12px; margin: 4px 0; box-sizing: border-box; font-size: 18px;">
+          <option value="basic">Basic</option>
+          <option value="secure">Secure</option>
+        </select>
       </div>
       <button onclick="login()">Login</button>
       <p id="duplicate-name-error" class="hidden" style="color: red; font-size: 24px;">Duplicate Name Access Denied</p>
-
       <p id="login-error" class="hidden"></p>
     </div>
   </div>

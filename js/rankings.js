@@ -31,14 +31,14 @@ function updateTable(jsonResponse) {
     const nameCell = row.insertCell(1);
     nameCell.textContent = team[0];
 
-    const scoreCell = row.insertCell(2);
-    scoreCell.textContent = team[1];
+    const answeredQuestionsCell = row.insertCell(2);
+    answeredQuestionsCell.textContent = team[3];
 
     const attemptedQuestionsCell = row.insertCell(3);
     attemptedQuestionsCell.textContent = team[2];
 
-    const answeredQuestionsCell = row.insertCell(4);
-    answeredQuestionsCell.textContent = team[3];
+    const scoreCell = row.insertCell(4);
+    scoreCell.textContent = team[1];
   });
 }
 
