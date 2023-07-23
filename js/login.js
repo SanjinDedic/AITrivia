@@ -41,13 +41,13 @@ async function signin() {
     const teamName = document.getElementById("team_name").value;
     const teamPassword = document.getElementById("password").value;
     console.log("team fetched");
-    const response = await fetch("https://aitrivia.online/login", {
+    const response = await fetch("https://aitrivia.online/signin", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            name: teamName,
+            team_name: teamName,
             password: teamPassword
         }),
     });
@@ -62,15 +62,8 @@ async function signin() {
         return;
     }
 
-    if (responseData.message === "Team already exists") {
-        duplicateNameError.classList.remove("hidden");
-        return;
-    } else {
-        duplicateNameError.classList.add("hidden");
-    }
-
     localStorage.setItem("access_token", responseData.access_token);
     localStorage.setItem("teamName", teamName); // store teamName in localStorage
     console.log("Sign in successful");
-    window.location.href = 'pages/comp.html';
+    window.location.href = 'pages/quiz.html';
 }
