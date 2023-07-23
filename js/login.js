@@ -54,6 +54,7 @@ async function signin() {
 
     const responseData = await response.json();
     console.log("Response arrived");
+    console.log(responseData.message);
     console.log(responseData);
     const duplicateNameError = document.getElementById("duplicate-name-error");
 
