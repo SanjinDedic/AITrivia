@@ -10,13 +10,15 @@ function updateTable(jsonResponse) {
   const headerRanking = headerRow.insertCell(0);
   const headerName = headerRow.insertCell(1);
   const headerScore = headerRow.insertCell(2);
-  const headerQuestions = headerRow.insertCell(3);
+  const headerAttemptedQuestions = headerRow.insertCell(3);
+  const headerAnsweredQuestions = headerRow.insertCell(4);
   headerRanking.innerHTML = "RANK";
   headerName.innerHTML = "TEAM NAME";
   headerScore.innerHTML = "SCORE";
-  headerQuestions.innerHTML = "ANSWERED QUESTIONS";
+  headerAttemptedQuestions.innerHTML = "ATTEMPTED QUESTIONS";
+  headerAnsweredQuestions.innerHTML = "ANSWERED QUESTIONS";
 
-  const sortedTeams = jsonResponse.teams.sort((a, b) => b[2] - a[2]).slice(0, 20);
+  const sortedTeams = jsonResponse.teams.sort((a, b) => b[1] - a[1]).slice(0, 20);
 
   sortedTeams.forEach((team, index) => {
     const row = rankingTable.insertRow(-1);
@@ -30,10 +32,13 @@ function updateTable(jsonResponse) {
     nameCell.textContent = team[0];
 
     const scoreCell = row.insertCell(2);
-    scoreCell.textContent = team[2];
+    scoreCell.textContent = team[1];
 
-    const questionsCell = row.insertCell(3);
-    questionsCell.textContent = team[3];
+    const attemptedQuestionsCell = row.insertCell(3);
+    attemptedQuestionsCell.textContent = team[2];
+
+    const answeredQuestionsCell = row.insertCell(4);
+    answeredQuestionsCell.textContent = team[3];
   });
 }
 
@@ -64,6 +69,7 @@ function updateCurrentTeamName() {
     teamNameDisplay.textContent = "No team selected";
   }
 }
+
 fetchDataAndUpdateTable();
 updateCurrentTeamName();
 // Fetch data and update table every second
