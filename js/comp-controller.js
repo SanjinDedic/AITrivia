@@ -1,6 +1,6 @@
-console.log('made it to quiz-controller.js');
+console.log('made it to comp-controller.js');
 import { fetchQuestions, shuffleArray } from '/js/startup.js';
-import { displayQuestion, startCountdown } from '/js/question-display.js';
+import { displayQuestion } from '/js/question-display.js';
 import { updateScoreDisplay, showResult } from './score-handler.js';
 
 let questions = [];
@@ -14,9 +14,9 @@ const startQuiz = async () => {
     questions = shuffledQuestions;
     displayQuestion(currentQuestionIndex, questions, score); 
     updateScoreDisplay(score);
-    startCountdown(currentQuestionIndex, questions);
+    document.getElementById("next-button").disabled = questions.length <= 1;
+    document.getElementById("previous-button").disabled = true;
 };
-
 
 async function submitAnswer(forceSubmit = false, db = "trivia.db") {
     if (currentQuestionIndex >= questions.length) {return;}
@@ -95,22 +95,20 @@ async function submitAnswer(forceSubmit = false, db = "trivia.db") {
 
         questionContainer.classList.add('hidden');
     }
-
-    setTimeout(function() {
-        resultDisplay.classList.add('hidden');
-        questionContainer.classList.remove('hidden');
-        currentQuestionIndex++;
-        displayQuestion(currentQuestionIndex,questions, score);
-        startCountdown(currentQuestionIndex,questions);
-    }, 3000); 
 }
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector("#submit-button").onclick = () => submitAnswer();;
+    document.querySelector("#submit-button").onclick = () => submitAnswer(db="comp.db");
+    document.querySelector("#next-button").onclick = () => navigateQuestion(1);
+    document.querySelector("#previous-button").onclick = () => navigateQuestion(-1);
 });
 
+function navigateQuestion(direction) {
+    currentQuestionIndex += direction;
+    displayQuestion(currentQuestionIndex, questions, score);
+    document.getElementById("next-button").disabled = currentQuestionIndex >= questions.length - 1;
+    document.getElementById("previous-button").disabled = currentQuestionIndex <= 0;
+}
 
 startQuiz();
 

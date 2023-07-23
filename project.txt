@@ -144,14 +144,14 @@ body {
   font-size: 28px;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input[type="text"], .login-container input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   font-size: 18px;
 }
+
 
 button {
   background-color: #4CAF50;
@@ -286,6 +286,162 @@ table th {
 .main-container {
   margin-top: 3rem;
 }
+File name: /mnt/g/My Drive/PROJECTS/AITrivia/css/signin.css
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold; /* Added for boldness */
+  }
+  
+  #login-container label { /* To adjust label text */
+    font-size: 20px; 
+    font-weight: bold;
+  }
+  
+  #question-image {
+    width: 512px;
+    height: auto;
+  }
+  
+  input[type="radio"] {
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"], input[type="password"] { /* include password input */
+    width: 100%; /* Updated width */
+    font-size: 28px; /* Updated font-size */
+    margin-top: 10px;
+  }
+  
+  button[type="submit"], button { /* include general button */
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover, button:hover { /* include general button */
+    background-color: #0056B3;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  #login-container div { /* target div containing label and input */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #login-container h1 { /* match the ID in the HTML */
+    font-size: 28px;
+  }
+
+  #login-container label {
+    margin-right: 10px; /* space between label and input */
+  }
+  
+  input[type="text"], input[type="password"] { 
+    width: 70%; /* adjust as necessary */
+    font-size: 28px; 
+    margin-top: 10px;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 32px;
+    margin: 16px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding-top: 30px;
+  }
+  
+  .navbar {
+    background-color: #333;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar a:hover {
+    background-color: #111;
+  }
+  
+  .team-name {
+    color: white;
+  }
+  
+  .main-container {
+    margin-top: 3rem;
+  }
+  
+  .question-container {
+    width: 512px;
+    margin: 0 auto;
+  }
+  
 File name: /mnt/g/My Drive/PROJECTS/AITrivia/js/login.js
 async function login() {
     console.log("Login initiated");
@@ -324,6 +480,46 @@ async function login() {
     window.location.href = 'pages/quiz.html';
 }
 
+
+async function signin() {
+    console.log("Sigining in initiated");
+    const teamName = document.getElementById("team_name").value;
+    const teamPassword = document.getElementById("password").value;
+    console.log("team fetched");
+    const response = await fetch("https://aitrivia.online/signin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            team_name: teamName,
+            password: teamPassword
+        }),
+    });
+
+    const responseData = await response.json();
+    console.log("Response arrived");
+    console.log(responseData.message);
+    console.log(responseData);
+    const user_message = document.getElementById("user_message");
+
+
+    if (response.status === 401) {
+        console.log("Login failed");
+        user_message.classList.remove("hidden");
+        return;
+    }
+    // check if access_token is present in response
+    if (responseData.access_token === undefined) {
+        console.log("Login failed");
+        user_message.classList.remove("hidden");
+        return;
+    }
+    localStorage.setItem("access_token", responseData.access_token);
+    localStorage.setItem("teamName", teamName); // store teamName in localStorage
+    console.log("Sign in successful");
+    window.location.href = 'pages/quiz.html';
+}
 File name: /mnt/g/My Drive/PROJECTS/AITrivia/js/question-display.js
 import { submitAnswer } from '/js/quiz-controller.js';
 import { showResult  } from '/js/score-handler.js';
@@ -441,7 +637,7 @@ async function submitAnswer(forceSubmit = false) {
             "id": id,
             "answer": answer,
             "team_name": teamName,
-            "table": "teams"
+            "db": "trivia.db"
         }),
     });
 
@@ -547,7 +743,7 @@ function updateTable(jsonResponse) {
 }
 
 // Function to fetch data from the API and update the table
-async function fetchDataAndUpdateTable(tableName = "grokkers") {
+async function fetchDataAndUpdateTable(tableName = "teams") {
   try {
     const apiUrl = `https://aitrivia.online/get_teams_table?table_name=${tableName}`;
     const response = await fetch(apiUrl, {
@@ -614,8 +810,7 @@ async function fetchQuestions(url = 'questions.json') {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        const last100Questions = data.slice(-100);
-        const shuffledQuestions = shuffleArray(last100Questions).slice(0, 5);
+        const shuffledQuestions = shuffleArray(data).slice(0, 10);
         return { shuffledQuestions };
     } catch (error) {
         console.error('Error fetching questions:', error);
@@ -783,3 +978,40 @@ File name: /mnt/g/My Drive/PROJECTS/AITrivia/pages/rankings.html
 </body>
 </html>
 
+File name: /mnt/g/My Drive/PROJECTS/AITrivia/pages/signin.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base id="base" href="/">  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science and Tech Trivia</title>
+  <link rel="stylesheet" href="css/signin.css">
+</head>
+
+<body>
+  <nav class="navbar">
+    <a href="index.html">Reset</a>
+    <a href="pages/rankings.html" target="_blank">Rankings</a>
+    <a href="pages/about.html" target="_blank">About</a>
+  </nav>
+  <div class="main-container">
+    <div class="container" id="login-container">
+      <h1>Enter Your Credentials:</h1>
+      <div>
+        <label for="team_name">Team Name:</label>
+        <input type="text" id="team_name">
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+      </div>
+      <button onclick="signin()">Login</button>
+      <p id="user_message" class="hidden" style="color: red; font-size: 24px;">Invalid Login Credentials</p>
+  
+      <p id="login-error" class="hidden"></p>
+    </div>
+  </div>
+  <script src="js/login.js"></script>
+</body>
+</html>
