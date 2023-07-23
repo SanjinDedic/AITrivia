@@ -56,16 +56,20 @@ async function signin() {
     console.log("Response arrived");
     console.log(responseData.message);
     console.log(responseData);
-    const duplicateNameError = document.getElementById("duplicate-name-error");
+    const user_message = document.getElementById("user_message");
+
 
     if (response.status === 401) {
         console.log("Login failed");
+        user_message.classList.remove("hidden");
         return;
     }
     // check if access_token is present in response
     if (responseData.access_token === undefined) {
         console.log("Login failed");
+        user_message.classList.remove("hidden");
         return;
+    }
     localStorage.setItem("access_token", responseData.access_token);
     localStorage.setItem("teamName", teamName); // store teamName in localStorage
     console.log("Sign in successful");
