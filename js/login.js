@@ -62,7 +62,10 @@ async function signin() {
         console.log("Login failed");
         return;
     }
-
+    // check if access_token is present in response
+    if (responseData.access_token === undefined) {
+        console.log("Login failed");
+        return;
     localStorage.setItem("access_token", responseData.access_token);
     localStorage.setItem("teamName", teamName); // store teamName in localStorage
     console.log("Sign in successful");
