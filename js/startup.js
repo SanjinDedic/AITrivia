@@ -4,8 +4,7 @@ async function fetchQuestions(url = 'questions.json') {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        const last100Questions = data.slice(-100);
-        const shuffledQuestions = shuffleArray(last100Questions).slice(0, 10);
+        const shuffledQuestions = shuffleArray(data).slice(0, 10);
         return { shuffledQuestions };
     } catch (error) {
         console.error('Error fetching questions:', error);

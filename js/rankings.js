@@ -38,7 +38,7 @@ function updateTable(jsonResponse) {
 }
 
 // Function to fetch data from the API and update the table
-async function fetchDataAndUpdateTable(tableName = "grokkers") {
+async function fetchDataAndUpdateTable(tableName = "teams") {
   try {
     const apiUrl = `https://aitrivia.online/get_teams_table?table_name=${tableName}`;
     const response = await fetch(apiUrl, {

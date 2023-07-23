@@ -50,7 +50,7 @@ async function submitAnswer(forceSubmit = false) {
             "id": id,
             "answer": answer,
             "team_name": teamName,
-            "table": "grokkers"
+            "db": "trivia.db"
         }),
     });
 
