@@ -3,6 +3,7 @@ const API_URL = "http://192.168.0.229:8000";
 const rankingTable = document.getElementById("ranking-table");
 
 function updateTable(jsonResponse) {
+  console.log(jsonResponse);
   rankingTable.innerHTML = ""; 
 
   const header = rankingTable.createTHead();
@@ -12,33 +13,39 @@ function updateTable(jsonResponse) {
   const headerAnsweredQuestions = headerRow.insertCell(2);
   const headerAttemptedQuestions = headerRow.insertCell(3);
   const headerScore = headerRow.insertCell(4);
+  
   headerRanking.innerHTML = "RANK";
   headerName.innerHTML = "TEAM NAME";
-  headerAnsweredQuestions.innerHTML = "ANSWERED QUESTIONS";
   headerAttemptedQuestions.innerHTML = "ATTEMPTED QUESTIONS";
+  headerAnsweredQuestions.innerHTML = "ANSWERED QUESTIONS";
   headerScore.innerHTML = "SCORE";
-
-  const sortedTeams = jsonResponse.teams.sort((a, b) => b[1] - a[1]).slice(0, 20);
+  
+  const sortedTeams = jsonResponse.teams.sort((a, b) => b[2] - a[2]).slice(0, 20);
 
   sortedTeams.forEach((team, index) => {
+    let name = team[0];
+    let attemptedQuestions = team[3];
+    let answeredQuestions = team[4];
+    let score = team[2];
+    
     const row = rankingTable.insertRow(-1);
-    row.style.backgroundColor = team[4]; 
+    row.style.backgroundColor = team[5]; 
     row.style.color = 'black'; 
 
     const rankCell = row.insertCell(0);
     rankCell.textContent = index + 1;
 
     const nameCell = row.insertCell(1);
-    nameCell.textContent = team[0];
+    nameCell.textContent = name;
 
     const answeredQuestionsCell = row.insertCell(2);
-    answeredQuestionsCell.textContent = team[3];
+    answeredQuestionsCell.textContent = answeredQuestions;
 
     const attemptedQuestionsCell = row.insertCell(3);
-    attemptedQuestionsCell.textContent = team[2];
+    attemptedQuestionsCell.textContent = attemptedQuestions;
 
     const scoreCell = row.insertCell(4);
-    scoreCell.textContent = team[1];
+    scoreCell.textContent = score;
   });
 }
 
@@ -52,7 +59,6 @@ async function fetchDataAndUpdateTable() {
       }
     });
     const data = await response.json();
-    console.log(data)
     updateTable(data);
   } catch (error) {
     console.error("Error fetching data:", error);
