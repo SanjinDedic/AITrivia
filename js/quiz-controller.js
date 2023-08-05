@@ -1,3 +1,6 @@
+const API_URL = "http://192.168.0.229:8000";
+//const API_URL = "https://aitrivia.online/";
+
 console.log('made it to quiz-controller.js');
 import { fetchQuestions, shuffleArray } from '/js/startup.js';
 import { displayQuestion, startCountdown } from '/js/question-display.js';
@@ -7,6 +10,7 @@ let questions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let maxScore = 0;
+let db = "trivia.db";
 
 const startQuiz = async () => {
     console.log('startQuiz');
@@ -18,10 +22,12 @@ const startQuiz = async () => {
 };
 
 
-async function submitAnswer(forceSubmit = false, db = "trivia.db") {
+async function submitAnswer(forceSubmit = false) {
     if (currentQuestionIndex >= questions.length) {return;}
     console.log('submitAnswer');
+    let endpoint = "/submit_answer";
     const teamName = localStorage.getItem("teamName");
+    const gameVersion = localStorage.getItem("gameVersion");
     const id = questions[currentQuestionIndex].id.toString(10);
     console.log(teamName, id);
     let answer;
@@ -39,8 +45,11 @@ async function submitAnswer(forceSubmit = false, db = "trivia.db") {
     } else if (questions[currentQuestionIndex].type === 'short_answer') {
         answer = document.getElementById("short_answer").value.trim();
     }
-
-    const response = await fetch('https://aitrivia.online/submit_answer', {
+    if (gameVersion === 'basic') {
+      endpoint = "/submit_answer"}
+    if (gameVersion === 'secure') {
+      endpoint = "/submit_answer_sec"}
+    const response = await fetch(API_URL +endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -50,7 +59,6 @@ async function submitAnswer(forceSubmit = false, db = "trivia.db") {
             "id": id,
             "answer": answer,
             "team_name": teamName,
-            "db": db
         }),
     });
 
@@ -70,7 +78,14 @@ async function submitAnswer(forceSubmit = false, db = "trivia.db") {
         resultMessage.innerText = 'Correct!';
         correctAnswer.innerText = '';
         questionContainer.classList.add('hidden');
-    } else {
+    } else if (responseData.message && responseData.message.includes("security")) {
+      console.log("Security error");
+      resultDisplay.classList.remove('hidden');
+      resultMessage.innerText = 'Security error!';
+      correctAnswer.innerText = '';
+      questionContainer.classList.add('hidden');
+    }
+    else {
         console.log("Answer is incorrect");
         resultDisplay.classList.remove('hidden');
         resultMessage.innerText = 'Incorrect!';

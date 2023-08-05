@@ -2,6 +2,12 @@
 async function fetchQuestions(url = 'questions.json') {
     console.log("fetching questions");
     try {
+        if (localStorage.getItem("gameVersion") === 'basic') {
+            url = 'questions.json';
+        }
+        if (localStorage.getItem("gameVersion") === 'secure') {
+            url = 'comp_questions.json';
+        }
         const response = await fetch(url);
         const data = await response.json();
         const shuffledQuestions = shuffleArray(data).slice(0, 10);

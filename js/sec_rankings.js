@@ -44,7 +44,7 @@ function updateTable(jsonResponse) {
 
 async function fetchDataAndUpdateTable() {
   try {
-    const apiUrl =  API_URL +"/get_teams_table";
+    const apiUrl =  API_URL +"/get_comp_table";
     const response = await fetch(apiUrl, {
       method: "GET",
       headers: {
