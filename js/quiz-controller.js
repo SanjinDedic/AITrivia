@@ -1,5 +1,5 @@
-const API_URL = "http://192.168.0.229:8000";
-//const API_URL = "https://aitrivia.online/";
+//const API_URL = "http://192.168.0.229:8000";
+const API_URL = "https://aitrivia.online";
 
 console.log('made it to quiz-controller.js');
 import { fetchQuestions, shuffleArray } from '/js/startup.js';

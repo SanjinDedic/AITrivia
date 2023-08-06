@@ -9,7 +9,7 @@
           "Metasploit",
           "All of the above"
       ],
-      "answer": "d",
+      "answer": "a",
       "points": 40,
       "image_link": ""
   },
@@ -17,7 +17,7 @@
       "id": 2,
       "type": "short_answer",
       "question": "What is the common name for vulnerabilities that are unknown to the vendor?",
-      "answer": "Zero-day vulnerabilities",
+      "answer": "c",
       "points": 30,
       "image_link": ""
   },
@@ -31,7 +31,7 @@
           "C",
           "Java"
       ],
-      "answer": "a",
+      "answer": "d",
       "points": 20,
       "image_link": ""
   },
@@ -39,7 +39,7 @@
       "id": 4,
       "type": "short_answer",
       "question": "What is the technique called where an attacker intercepts communication between two parties without their knowledge?",
-      "answer": "Man-in-the-Middle Attack",
+      "answer": "hahaha",
       "points": 50,
       "image_link": ""
   },
@@ -53,7 +53,7 @@
           "Trojan",
           "Ransomware"
       ],
-      "answer": "b",
+      "answer": "a",
       "points": 20,
       "image_link": ""
   },
@@ -61,7 +61,7 @@
       "id": 6,
       "type": "short_answer",
       "question": "What is the process of trying to decode encrypted or hashed data called?",
-      "answer": "Decryption",
+      "answer": "lol",
       "points": 30,
       "image_link": ""
   },
@@ -75,7 +75,7 @@
           "Burp Suite",
           "Aircrack-ng"
       ],
-      "answer": "a",
+      "answer": "c",
       "points": 40,
       "image_link": ""
   },
@@ -83,7 +83,7 @@
       "id": 8,
       "type": "short_answer",
       "question": "What method is used to disguise a harmful link or website to make it appear legitimate?",
-      "answer": "Phishing",
+      "answer": "a",
       "points": 30,
       "image_link": ""
   },
@@ -97,7 +97,7 @@
           "Brute-Force Attack",
           "Social Engineering"
       ],
-      "answer": "d",
+      "answer": "a",
       "points": 20,
       "image_link": ""
   },
@@ -105,7 +105,7 @@
       "id": 10,
       "type": "short_answer",
       "question": "What is the technique used by hackers to exploit a buffer overflow vulnerability in a targeted system?",
-      "answer": "Buffer Overflow Attack",
+      "answer": "d",
       "points": 40,
       "image_link": ""
   },
@@ -119,7 +119,7 @@
           "Man-in-the-Middle Attack",
           "Dictionary Attack"
       ],
-      "answer": "a",
+      "answer": "b",
       "points": 40,
       "image_link": ""
   },
@@ -127,7 +127,7 @@
       "id": 12,
       "type": "short_answer",
       "question": "What is the name of the tool used to crack WEP and WPA keys on Wi-Fi networks?",
-      "answer": "Aircrack-ng",
+      "answer": "a",
       "points": 30,
       "image_link": ""
   },
@@ -141,7 +141,7 @@
           "ARP",
           "DNS"
       ],
-      "answer": "c",
+      "answer": "a",
       "points": 30,
       "image_link": ""
   },
@@ -149,7 +149,7 @@
       "id": 14,
       "type": "short_answer",
       "question": "What technology is used to securely connect to a remote network, often utilized by remote workers?",
-      "answer": "Virtual Private Network (VPN)",
+      "answer": "vaaaa",
       "points": 20,
       "image_link": ""
   },
@@ -163,7 +163,7 @@
           "Encryption",
           "Authentication"
       ],
-      "answer": "a",
+      "answer": "b",
       "points": 40,
       "image_link": ""
   },
@@ -171,7 +171,7 @@
       "id": 16,
       "type": "short_answer",
       "question": "What does the 'S' stand for in HTTPS, signifying secure communication over a computer network?",
-      "answer": "Secure",
+      "answer": "rt",
       "points": 30,
       "image_link": ""
   },
@@ -185,7 +185,7 @@
           "EC-Council",
           "IEEE"
       ],
-      "answer": "c",
+      "answer": "a",
       "points": 30,
       "image_link": ""
   },
@@ -193,7 +193,7 @@
       "id": 18,
       "type": "short_answer",
       "question": "What method involves systematically guessing passwords to gain unauthorized access to a system?",
-      "answer": "Brute-Force Attack",
+      "answer": "a",
       "points": 40,
       "image_link": ""
   },
@@ -207,7 +207,7 @@
           "Worm",
           "Adware"
       ],
-      "answer": "a",
+      "answer": "b",
       "points": 40,
       "image_link": ""
   },
@@ -215,7 +215,7 @@
       "id": 20,
       "type": "short_answer",
       "question": "What is the practice of manipulating individuals into divulging confidential information called?",
-      "answer": "Social Engineering",
+      "answer": "d",
       "points": 50,
       "image_link": ""
   }

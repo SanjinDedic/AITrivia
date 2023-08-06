@@ -6,13 +6,12 @@ function showResult(questions, score) {
     document.getElementById("result").innerText = `Your score: ${score}/${maxScore}`;
     document.getElementById("result").classList.remove('hidden');
     setTimeout(() => {
-        let baseurl;
-        if (window.location.hostname === "sanjin84.github.io") {
-            baseurl = "/AITrivia";
+        //if the game is secure then redirect to the /pages/sec_rankings.html otherwise redirect to /pages/rankings.html
+        if (localStorage.getItem("gameVersion") === "secure") {
+            window.location.href = '../pages/sec_rankings.html';
         } else {
-            baseurl = "";
+            window.location.href = '../pages/rankings.html';
         }
-        window.location.href = `${baseurl}/pages/rankings.html`;
     }, 8000); // 5000ms (5 seconds) delay before redirecting
 }
 

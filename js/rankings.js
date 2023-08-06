@@ -1,4 +1,5 @@
-const API_URL = "http://192.168.0.229:8000";
+//const API_URL = "http://192.168.0.229:8000";
+const API_URL = "https://aitrivia.online";
 
 const rankingTable = document.getElementById("ranking-table");
 
