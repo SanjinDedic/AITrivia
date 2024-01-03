@@ -62,3 +62,95 @@ async function login() {
     console.log("Login successful");
     window.location.href = 'pages/quiz.html';
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const serverMarker = document.getElementById('server-marker');
+    serverMarker.addEventListener('click', function(event) {
+        event.preventDefault();
+        sendApiRequest();
+    });
+
+    if (localStorage.getItem('countdownEndTime')) {
+        runCountdown();
+        serverMarker.textContent = 'Server Running';
+        serverMarker.classList.add('heartbeat');
+    }
+});
+
+function sendApiRequest() {
+    
+    fetch('https://70b6f68hy8.execute-api.ap-southeast-2.amazonaws.com/test/startinstance?instance=trivia&time=30', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            // Additional headers
+        }
+    })
+    .then(response => {
+        if (response.ok) {  // Check if the response status is 200 (HTTP OK)
+            return response.json();  // Parse JSON body
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .then(data => {
+        console.log(data);
+        startCountdown(1800); // Start countdown for 30 minutes (1800 seconds)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+    
+}
+
+function startCountdown(duration) {
+    const endTime = new Date().getTime() + duration * 1000;
+    localStorage.setItem('countdownEndTime', endTime);
+    updateServerMarker(true);
+    runCountdown();
+    
+}
+
+function runCountdown() {
+    const countdownElement = document.getElementById('countdown-timer');
+    const endTime = localStorage.getItem('countdownEndTime');
+    let timeLeft = (endTime - new Date().getTime()) / 1000;
+
+    countdownElement.style.display = 'inline'; // Show the countdown
+
+    const interval = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            updateServerMarker(false);
+            countdownElement.style.display = 'none';
+            localStorage.removeItem('countdownEndTime'); // Clear the stored end time
+        } else {
+            timeLeft = (endTime - new Date().getTime()) / 1000;
+            countdownElement.textContent = formatTime(timeLeft);
+        }
+    }, 1000);
+}
+
+function formatTime(seconds) {
+    seconds = Math.max(seconds, 0); // Ensure seconds doesn't go negative
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${pad(minutes)}:${pad(remainingSeconds)}`;
+}
+
+function pad(number) {
+    return number.toString().padStart(2, '0');
+}
+
+
+function updateServerMarker(isRunning) {
+    const serverMarker = document.getElementById('server-marker');
+    if (isRunning) {
+        serverMarker.textContent = '● Server Running';
+        serverMarker.classList.add('heartbeat');
+    } else {
+        serverMarker.textContent = 'Server Launch';
+        serverMarker.classList.remove('heartbeat');
+    }
+}

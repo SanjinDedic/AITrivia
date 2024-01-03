@@ -172,3 +172,25 @@ body {
   #next-button {
     float: right;
   }
+
+  .server-launch-container {
+    display: flex;
+    align-items: center; /* This will vertically align the elements in the middle */
+    justify-content: center; /* This will horizontally align the elements in the center */
+}
+
+#countdown-timer {
+    margin-left: 10px; /* Add some space between the link and the timer */
+    font-weight: bold;
+    color: #fff; /* Adjust the color as per your navbar's theme */
+}
+
+@keyframes heartbeat {
+  0% { color: red; }
+  50% { color: #fff;}
+  100% { color: red; }
+}
+
+.heartbeat {
+  animation: heartbeat 1s infinite;
+}
