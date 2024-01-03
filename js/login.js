@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function sendApiRequest() {
     
-    fetch('https://70b6f68hy8.execute-api.ap-southeast-2.amazonaws.com/test/startinstance?instance=trivia', {
+    fetch('https://70b6f68hy8.execute-api.ap-southeast-2.amazonaws.com/test/startinstance?instance=trivia&time=30', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ function sendApiRequest() {
     })
     .then(data => {
         console.log(data);
-           startCountdown(1800); // Start countdown for 30 minutes (1800 seconds)
+        startCountdown(1800); // Start countdown for 30 minutes (1800 seconds)
     })
     .catch((error) => {
         console.error('Error:', error);
